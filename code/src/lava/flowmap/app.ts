@@ -310,8 +310,10 @@ function resetColor() {
   }
   if ($state.config.color.max) {
     //smooth, so color function has to be row=>number
+    // const value = $state.config.color;
     const value = $state.config.color;
-    const domain = extent(allValids, r => value(r) as number);
+    // const domain = extent(allValids, r => value(r) as number);
+    const domain = [value.min_value, value.max_value];
     const range = [value.min, value.max];
     const scale = scaleLinear<string>().domain(domain).range(range)
       .interpolate(interpolateRgb).clamp(true);

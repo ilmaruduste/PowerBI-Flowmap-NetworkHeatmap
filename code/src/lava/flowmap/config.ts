@@ -14,7 +14,10 @@ export class Config {
     source = null as Func;
     target = null as Func;
     groups = null as number[][];
-    color = null as Func<number | string> & { min?: string, max?: string };//row=>value || row=>color
+    color = null as Func<number | string> & 
+        {   min?: string, min_value?: number, 
+            mid?: string, mid_value?: number, 
+            max?: string, max_value?: number, };//row=>value || row=>color
     weight = null as
         { conv: Func<number>; min: number; max: number; scale: 'linear' | 'log'; } |
         { conv: Func<number>; unit: number; scale: 'none' } |

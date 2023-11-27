@@ -203,7 +203,11 @@ export class Visual implements IVisual {
         else if (ctx.type('color').numeric) {
             const values = ctx.nums('color');
             config.color = r => values[r];
+            config.color.min_value = ctx.config('color', 'min_value');
             config.color.min = ctx.config('color', 'min');
+            config.color.mid_value = ctx.config('color', 'mid_value');
+            config.color.mid = ctx.config('color', 'mid');
+            config.color.max_value = ctx.config('color', 'max_value');
             config.color.max = ctx.config('color', 'max');
         }
         else {
@@ -428,7 +432,7 @@ export class Visual implements IVisual {
                     return color.result;
                 }
                 else if (ctx.type('color').numeric) {
-                    return color.metas('customize', ['min', 'max']).result;
+                    return color.metas('customize', ['min', 'mid', 'max']).result;
                 }
                 else {
                     return color.items('item').result;

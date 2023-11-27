@@ -240,10 +240,29 @@
                 "item":{
                     "displayName": "Default",
                     "type": { "fill": { "solid": { "color": true } } }
+                },                
+                "min_value": {
+                    "displayName": "Min Value",
+                    "description": "Minimum value for coloring all lines",
+                    "type": { "numeric": true }
                 },
                 "min":{
                     "displayName": "Min",
                     "type": { "fill": { "solid": { "color": true } } }
+                },                
+                "mid_value": {
+                    "displayName": "Mid Value",
+                    "description": "Mid value for coloring all lines",
+                    "type": { "numeric": true }
+                },
+                "mid":{
+                    "displayName": "Mid",
+                    "type": { "fill": { "solid": { "color": true } } }
+                },                
+                "max_value": {
+                    "displayName": "Max Value",
+                    "description": "Maximum value for coloring all lines",
+                    "type": { "numeric": true }
                 },
                 "max":{
                     "displayName": "Max",
@@ -312,7 +331,8 @@
                         "enumeration": [
                             {"displayName": "None", "value": "none"},
                             {"displayName": "Origin", "value": "origin"},
-                            {"displayName": "Destination", "value": "dest"}
+                            {"displayName": "Destination", "value": "dest"},
+                            {"displayName": "Both", "value": "both"}
                         ]
                     }
                 },
