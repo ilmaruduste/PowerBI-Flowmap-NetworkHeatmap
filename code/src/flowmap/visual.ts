@@ -432,7 +432,7 @@ export class Visual implements IVisual {
                     return color.result;
                 }
                 else if (ctx.type('color').numeric) {
-                    return color.metas('customize', ['min', 'mid', 'max']).result;
+                    return color.metas('customize', ['min', 'min_value', 'mid', 'mid_value', 'max', 'max_value']).result;
                 }
                 else {
                     return color.items('item').result;
