@@ -22,7 +22,7 @@ export class Context<R extends string, F> {
     }
 
     public isResizeVisualUpdateType(options: powerbi.extensibility.visual.VisualUpdateOptions): boolean {
-        return options.type === 4 || options.type === 32 || options.type === 36;
+        return options.type === 4 || options.type === 32;
     }
 
     public persist<O extends keyof F, P extends keyof F[O]>(oname: O, pname: P, v: F[O][P]) {
