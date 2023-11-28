@@ -310,13 +310,13 @@ function resetColor() {
   }
   if ($state.config.color.max) {
     //smooth, so color function has to be row=>number
-    // const value = $state.config.color;
     const value = $state.config.color;
-    // const domain = extent(allValids, r => value(r) as number);
-    const domain = [value.min_value, value.max_value];
-    const range = [value.min, value.max];
+
+    const domain = [value.min_value, value.mid_value, value.max_value];
+    const range = [value.min, value.mid, value.max];
     const scale = scaleLinear<string>().domain(domain).range(range)
-      .interpolate(interpolateRgb).clamp(true);
+       .interpolate(interpolateRgb).clamp(true);
+
     $state.color = r => scale(value(r) as number);
     if (!$state.config.legend.colorLabels) {
       legend.recolor({ domain, range });
