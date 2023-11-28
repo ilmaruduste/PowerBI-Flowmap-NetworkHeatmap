@@ -167,7 +167,7 @@ var capability = {
 
 function parameter(map: Map, fmt: IMapFormat, div: HTMLDivElement): Microsoft.Maps.IMapLoadOptions {
   const para = {
-    credentials: 'Your key here',
+    credentials: 'Ao9wJrswZSwYdA7xUVZddyH3qKVh_f3GEbwcb-tC6JoTyXDnE3YeNIn9UzYqGcVw',
     showDashboard: false,
     showTermsLink: false,
     showScalebar: fmt.scale || false,
