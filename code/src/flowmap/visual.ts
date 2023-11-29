@@ -156,12 +156,26 @@ export class Visual implements IVisual {
         }
     }
 
+    private _buildLegendName(role: 'color' | 'width'): string {
+        const ctx = this._ctx, legend = ctx.fmt.legend;
+        const autofill = role === 'color' ? 'color_default' : 'width_default';
+        const label = role === 'color' ? 'color_label' : 'width_label';
+        if (!legend.config(role)) {
+            return null;//hide
+        }
+        else {
+            return ctx.columns(role).map(c => c.source.displayName)[0];
+        }
+    }
+
     private _config(): app.Config {
         const config = new app.Config(), ctx = this._ctx;
         /* #region  legend */
         override(ctx.meta.legend, config.legend);
         config.legend.colorLabels = this._buildLegendLabels('color');
+        config.legend.colorLegendName = this._buildLegendName('color');
         config.legend.widthLabels = this._buildLegendLabels('width');
+        config.legend.widthLegendName = this._buildLegendName('width');
         /* #endregion */
 
         /* #region  numberSorter, numberFormat */

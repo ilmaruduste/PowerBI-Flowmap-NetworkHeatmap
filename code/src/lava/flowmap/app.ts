@@ -316,10 +316,11 @@ function resetColor() {
     const range = [value.min, value.mid, value.max];
     const scale = scaleLinear<string>().domain(domain).range(range)
        .interpolate(interpolateRgb).clamp(true);
+    const legendName = $state.config.legend.colorLegendName;
 
     $state.color = r => scale(value(r) as number);
     if (!$state.config.legend.colorLabels) {
-      legend.recolor({ domain, range });
+      legend.recolor({ domain, range, legendName});
     }
   }
   else {

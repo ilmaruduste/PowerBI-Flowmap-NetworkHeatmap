@@ -34,7 +34,9 @@ export class Config {
         color: true,
         width: true,
         colorLabels: {} as StringMap<string>,
-        widthLabels: {} as StringMap<string>
+        colorLegendName: "",
+        widthLabels: {} as StringMap<string>,
+        widthLegendName: ""
     };
 
     map = new MapFormat();

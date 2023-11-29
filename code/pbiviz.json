@@ -1,8 +1,8 @@
 {
     "visual": {
-        "name": "flowmap_color_3way_networkheatmap",
-        "displayName": "Flow Map Color 3-way gradient Network Heatmap",
-        "guid": "flowmapcolor3way123123",
+        "name": "flowmap_color_networkheatmap",
+        "displayName": "Flow Map Network Heatmap",
+        "guid": "flowmapcolornetworkheatmapAB04487",
         "visualClassName": "Visual",
         "version": "1.5.1.0",
         "description": "Flowmap is a diagram that visualizes the movement of objects from one location to another.",

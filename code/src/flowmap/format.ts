@@ -11,7 +11,9 @@ export class Format {
         color_default: false,
         width_default: false,
         color_label: '',
-        width_label: ''
+        color_legend_name: '',
+        width_label: '',
+        width_legend_name: ''
     };
 
     style = {
