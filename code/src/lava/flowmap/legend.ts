@@ -128,7 +128,7 @@ export class Legend {
         return this._svg.select('#info');
     }
 
-    public recolor(color: { domain: number[], range: string[] } | { distinct: StringMap<string> }) {
+    public recolor(color: { domain: number[], range: string[], legendName: string } | { distinct: StringMap<string> }) {
         this._colorWidth = 0;
         const root = this._svg.select('#color');
         root.selectAll('*').remove();
@@ -161,7 +161,7 @@ export class Legend {
             this._colorWidth = bias;
         }
         else {
-            const { domain, range } = color;
+            const { domain, range, legendName } = color;
             let conv = scaleLinear<any, any>().domain(domain).range(range);
             if (domain.some(v => util.bad(v))) {
                 conv = scaleLinear<any, any>().domain([0, 1]).range(range);
@@ -172,21 +172,26 @@ export class Legend {
                     .att.stop_color(v => {
                         if (v === 0)
                             return conv(domain[0]);
-                        else if (v === 1)
+                        else if (v === 0.5)
                             return conv(domain[1]);
+                        else if (v === 1)
+                            return conv(domain[2]); 
                         else
-                            return conv(domain[0] / 2 + domain[1] / 2);
+                            return conv(domain[0] / 3 + domain[1] / 3 + domain[2] / 3);
                     });
             }
             const fontsize = +$state.config.legend.fontSize, height = this.height();
             const w = fontsize * 15, h = fontsize / 2;
             root.append('rect').att.width(w).att.height(h).att.x(0).att.y(height - 2 - h)
-                .sty.fill('url(#grad)');
+            .sty.fill('url(#grad)');
             const labels = util.nice(domain);
             root.append('text').text(labels[0]).att.x(0).att.y(fontsize + 1).att.text_anchor('start');
-            root.append('text').text(labels[1]).att.x(w).att.y(fontsize + 1).att.text_anchor('end');
+            root.append('text').text(labels[1]).att.x(w / 2).att.y(fontsize + 1).att.text_anchor('middle');
+            root.append('text').text(labels[2]).att.x(w).att.y(fontsize + 1).att.text_anchor('end');
+            root.append('text').text(legendName).att.x(w + 6).att.y(height - 3).att.text_anchor('start')
             this._colorWidth = root.node<SVGGElement>().getBBox().width + 2;
             root.att.translate(2, 0);
+
         }
     }
 

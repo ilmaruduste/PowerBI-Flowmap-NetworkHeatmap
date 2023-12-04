@@ -156,12 +156,26 @@ export class Visual implements IVisual {
         }
     }
 
+    private _buildLegendName(role: 'color' | 'width'): string {
+        const ctx = this._ctx, legend = ctx.fmt.legend;
+        const autofill = role === 'color' ? 'color_default' : 'width_default';
+        const label = role === 'color' ? 'color_label' : 'width_label';
+        if (!legend.config(role)) {
+            return null;//hide
+        }
+        else {
+            return ctx.columns(role).map(c => c.source.displayName)[0];
+        }
+    }
+
     private _config(): app.Config {
         const config = new app.Config(), ctx = this._ctx;
         /* #region  legend */
         override(ctx.meta.legend, config.legend);
         config.legend.colorLabels = this._buildLegendLabels('color');
+        config.legend.colorLegendName = this._buildLegendName('color');
         config.legend.widthLabels = this._buildLegendLabels('width');
+        config.legend.widthLegendName = this._buildLegendName('width');
         /* #endregion */
 
         /* #region  numberSorter, numberFormat */
@@ -203,7 +217,11 @@ export class Visual implements IVisual {
         else if (ctx.type('color').numeric) {
             const values = ctx.nums('color');
             config.color = r => values[r];
+            config.color.min_value = ctx.config('color', 'min_value');
             config.color.min = ctx.config('color', 'min');
+            config.color.mid_value = ctx.config('color', 'mid_value');
+            config.color.mid = ctx.config('color', 'mid');
+            config.color.max_value = ctx.config('color', 'max_value');
             config.color.max = ctx.config('color', 'max');
         }
         else {
@@ -428,7 +446,7 @@ export class Visual implements IVisual {
                     return color.result;
                 }
                 else if (ctx.type('color').numeric) {
-                    return color.metas('customize', ['min', 'max']).result;
+                    return color.metas('customize', ['min', 'min_value', 'mid', 'mid_value', 'max', 'max_value']).result;
                 }
                 else {
                     return color.items('item').result;

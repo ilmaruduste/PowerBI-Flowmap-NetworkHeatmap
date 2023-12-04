@@ -11,7 +11,9 @@ export class Format {
         color_default: false,
         width_default: false,
         color_label: '',
-        width_label: ''
+        color_legend_name: '',
+        width_label: '',
+        width_legend_name: ''
     };
 
     style = {
@@ -31,8 +33,12 @@ export class Format {
 
     color = {
         item: { solid: { color: '#01B8AA' } },
-        min: { solid: { color: '#99e3dd' } },
-        max: { solid: { color: '#015c55' } },
+        min: { solid: { color: '#d43d51' } },
+        min_value: 0,
+        mid: { solid: { color: '#fff59f' } },
+        mid_value: 0.5,
+        max: { solid: { color: '#488f31' } },
+        max_value: 1,
         autofill: false,
         customize: true
     };
